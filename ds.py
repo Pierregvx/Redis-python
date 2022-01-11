@@ -40,22 +40,48 @@ def signIn():
     delimiteur = ' '
     s = delimiteur.join(i)
     #print(res,s)
+    print("Le numéro d'identification est :",res)
     r.set(res, s)
+    print(r.get("0"))
 
 def exit():
     sys.exit()
 
 def menurinc():
     print("1 : sign in ")
-    print("2 : leave")
-    choix = input(">>")
+    print("2 : register ")
+    print("3 : leave")
+    choix = input(">> ")
     exec_menu(choix)
+
+
+#STEP 2
+#Utilisation de sadd pour avoir des liens
+#Faut utiliser 3 set 
+def register():
+    code=input("Quel est votre numéro  d'identification : ")
+    while r.get(code)==None:
+        print("Mauvais identifiant",code)
+        code=input("Quel est votre numéro  d'identification : ")
+    print("Bienvenue : ",r.get(code))
+    choix=input("Voulez ajouter à un ami : (1 oui 2 non)")
+    if choix==1 or choix=='1':
+        ami=input("Quel est le numéro  d'identification de votre ami : ")
+        while r.get(ami)==None:
+            print("Mauvais identifiant",ami)
+            ami=input("Quel est le numéro  d'identification de votre ami : ")
+        r.sadd(code,ami)
+    else:
+        print("Au revoir !")
 
 choice = {
     'menu':menurinc,
     '1':signIn,
-    "2":exit
+    '2':register,
+    "3":exit
 }
+
 
 if __name__ =="__main__":
     menurinc()
+

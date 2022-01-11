@@ -40,7 +40,7 @@ def signIn():
     delimiteur = ' '
     s = delimiteur.join(i)
     #print(res,s)
-    r.set(res, i[0].split())
+    r.set(res, s)
 
 def exit():
     sys.exit()
